@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+	<head>
+		<title>Font test</title>
+		<style>
+		
+			@font-face {
+				font-family:'PingHei';
+				font-style:normal;
+				font-weight:200;
+				src:local("平黑"), url("fonts/PingHei-light.woff") format("woff"), url("fonts/PingHei-light.ttf") format("truetype");
+			}
+		
+			* {
+				box-sizing:		border-box;
+			}
+		
+			html,
+			body {
+				background:		#ecf0f1;
+				color:			#7f8c8d;
+				font-family: 	"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+				font-size:		100%;
+				font-smooth:	always;
+				font-weight:	300;
+				letter-spacing:	0.5px;
+				text-rendering:	optimizeLegibility;
+				-webkit-font-rendering: subpixel-antialiased;
+			}
+
+			body {
+				padding:		2em;
+			}
+			
+			body:before,
+			body:after {
+				content:		" ";
+				display:		table;
+			}
+			
+			body:after {
+				clear: 			both;
+			}
+			
+			textarea {
+				background: 	#fff;
+				border:			1px solid #bdc3c7;
+				box-shadow:		none;
+				resize:			none;
+			}
+
+			textarea,
+			.output {
+				color:			#7f8c8d;
+				display:		block;
+				float:			left;
+				font-size:		2em;
+				height:			300px;
+				overflow:		hidden;
+				padding:		1em;
+			}
+			
+			h2 {
+				clear:			both;
+				float:			left;
+				margin:			0.5em 0;
+				width:			100%;
+			}
+
+			.input {
+				margin-right:	2%;
+				width:			49%;
+			}
+			
+			.output {
+				font-family:	"PingHei","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+				width:			49%;
+			}
+			
+			.output:focus {
+				outline:		none;
+			}
+			
+			.warning {
+				color:			#bdc3c7;
+				display:		block;
+				font-size:		0.75em;
+				font-style:		italic;
+				left:			3.5em;
+				position:		absolute;
+				top:			1em;
+/*				transform:		translateX(-50%);*/
+			}
+			
+			.test-widths {
+				padding: 		1em 0;
+				width:			100%;
+			}
+			
+			.test-widths-copy {
+				padding: 		1em 0;
+			}
+			
+			.test-widths-section {
+				font-family:	"PingHei","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+				float:			left;
+				height:			100px;
+				line-height:	1.125;
+				margin-bottom:	32px;
+				margin-right:	32px;
+				outline:		1px solid #bdc3c7;
+				overflow:		hidden;
+				padding:		16px;
+				position:		relative;
+			}
+			
+			.test-widths-section:after {
+				background: 	-moz-linear-gradient(top,  rgba(236,240,241,0) 0%, rgba(236,240,241,1) 96%, rgba(236,240,241,1) 100%); /* FF3.6+ */
+				background: 	-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(236,240,241,0)), color-stop(96%,rgba(236,240,241,1)), color-stop(100%,rgba(236,240,241,1))); /* Chrome,Safari4+ */
+				background: 	-webkit-linear-gradient(top,  rgba(236,240,241,0) 0%,rgba(236,240,241,1) 96%,rgba(236,240,241,1) 100%); /* Chrome10+,Safari5.1+ */
+				background: 	-o-linear-gradient(top,  rgba(236,240,241,0) 0%,rgba(236,240,241,1) 96%,rgba(236,240,241,1) 100%); /* Opera 11.10+ */
+				background: 	-ms-linear-gradient(top,  rgba(236,240,241,0) 0%,rgba(236,240,241,1) 96%,rgba(236,240,241,1) 100%); /* IE10+ */
+				background: 	linear-gradient(to bottom,  rgba(236,240,241,0) 0%,rgba(236,240,241,1) 96%,rgba(236,240,241,1) 100%); /* W3C */
+				bottom:			0;
+				content:		"";
+				display:		block;
+				height:			20px;
+				left:			0;
+				position:		absolute;
+				width:			100%;
+			}
+			
+			.test-widths-section--large {
+				font-size:		2em;
+				width: 			697px;
+			}
+
+			.test-widths-copy .test-widths-section--large {
+				font-size:		1em;
+			}
+			
+			.test-widths-section--medium {
+				font-size:		1.75em;
+				width:			483px;
+			}
+			
+			.test-widths-copy .test-widths-section--medium {
+				font-size:		1em;
+			}
+
+			.test-widths-section--small {
+				font-size:		1.375em;
+				margin-right:	0;
+				width:			359px;
+			}
+			
+			.test-widths-copy .test-widths-section--small {
+				font-size:		1em;
+			}
+
+		</style>
+	</head>
+	<body>
+		<span class="warning">only paste chinese characters - delete numbers, spaces, and roman letters - to test for unsupported characters</span>
+		<textarea class="input" placeholder="paste Chinese here"></textarea>
+		<div class="output">output</div>
+		<div class="test-widths">
+			<h2>Headlines</h2>
+			<div class="test-widths-section test-widths-section--large"></div>
+			<div class="test-widths-section test-widths-section--medium"></div>
+			<div class="test-widths-section test-widths-section--small"></div>
+		</div>
+		<div class="test-widths test-widths-copy">
+			<h2>Copy</h2>
+			<div class="test-widths-section test-widths-section--large"></div>
+			<div class="test-widths-section test-widths-section--medium"></div>
+			<div class="test-widths-section test-widths-section--small"></div>
+		</div>
+		
+		<script>
+			(function () {
+				
+				// Using PingHei, characters are quite narrow. This test works by
+				// looking for characters that are wider than average and therefore
+				// likely to be reverting to the system font
+				
+				// Tested on entire C2 copydeck - caught all problem characters
+				
+				// Get input and output areas
+				var input = document.getElementsByClassName("input")[0];
+				var output = document.getElementsByClassName("output")[0];
+				var testSections = document.getElementsByClassName("test-widths-section");
+				
+				// Listen for input
+				input.addEventListener("keyup", updateOutput);
+				
+				// Update the output
+				function updateOutput(e) {
+					// clear previous/existing output
+					output.innerHTML = "";
+	
+					var text = input.value.trim();
+					
+					// create a new span for each character in the input
+					for(var i = 0; i < text.length; i++) {
+						var newSpan = document.createElement("span");
+						newSpan.textContent = text.charAt(i);
+						output.appendChild(newSpan);
+					}
+					
+					// check the spans (needs time to render them all first, hence the timeout)
+					setTimeout(function() {
+						checkSpans();
+					}, 100);
+					
+					// reset the output if input is empty
+					if(text.length === 0) {
+						output.innerHTML = "output";
+					}
+					
+					// test the content under specific widths
+					updateTestWidthSections(text);
+					
+				}
+				
+				function updateTestWidthSections(text) {
+					
+					for(var i = 0; i < testSections.length; i++) {
+						testSections[i].innerHTML = text;
+					}
+					
+				}
+				
+				// compare all the spans to find potentially problem characters
+				function checkSpans() {
+					var spans = document.querySelectorAll(".output span");
+					var sum = 0;
+
+					// get the average width of all characters
+					for(var i = 0; i < spans.length; i++) {
+						var spanWidth = spans[i].offsetWidth;
+						sum += spanWidth;
+					}
+					var avg = sum / spans.length;
+					
+					// now highlight any that are around 1px or more wider than average
+					for(var j = 0; j < spans.length; j++) {
+						var spanWidth = spans[j].offsetWidth;
+						if(spanWidth > Math.ceil(avg)) {
+							spans[j].style.color = "red";
+						}
+					}
+				}
+				
+			})();
+
+			// example problem character phrase:
+			// 一缕阳光
+		</script>
+	</body>
+</html>
