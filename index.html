@@ -214,9 +214,16 @@
 				var output = document.getElementsByClassName("output")[0];
 				var testSections = document.getElementsByClassName("test-widths-section");
 
+				// check for text as a URL parameter for automated testing
 				if(QueryString.length != 0 && QueryString.text){
-				 	input.value = decodeURI(QueryString.text);
+					inputText = decodeURI(QueryString.text);
+					// strip trailing slash
+					if(inputText.substr(-1) == "/") {
+						inputText = inputText.substring(0, inputText.length - 1);
+					}
+				 	input.value = inputText;
 				 	updateOutput();
+					input.focus();
 				}
 				
 				// Listen for input
