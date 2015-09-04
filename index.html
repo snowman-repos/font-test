@@ -1,218 +1,277 @@
 <!DOCTYPE HTML>
-<html lang="zh-CN">
+<html>
 	<head>
+		<meta charset="utf-8">
 		<title>Font test</title>
 		<style>
-		
+
 			@font-face {
-				font-family:'PingHei';
-				font-style:normal;
-				font-weight:200;
-				src:local("平黑"), url("fonts/PingHei-light.woff") format("woff"), url("fonts/PingHei-light.ttf") format("truetype");
+				font-family:			"PingHei";
+				font-style:				normal;
+				font-weight:			200;
+				src:					local("平黑"), url("fonts/PingHei-light.woff") format("woff");
 			}
-		
+
+			@font-face {
+				font-family:			"MHei";
+				font-style:				normal;
+				font-weight:			200;
+				src:					url("fonts/MHeiHK-Light.woff") format("woff");
+			}
+
 			* {
-				box-sizing:		border-box;
+				box-sizing:				border-box;
 			}
-		
+
 			html,
 			body {
-				background:		#ecf0f1;
-				color:			#7f8c8d;
-				font-family: 	"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-				font-size:		100%;
-				font-smooth:	always;
-				font-weight:	300;
-				letter-spacing:	0.5px;
-				text-rendering:	optimizeLegibility;
-				-webkit-font-rendering: subpixel-antialiased;
+				background:				#ecf0f1;
+				color:					#7f8c8d;
+				font-family:			"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+				font-size:				100%;
+				font-smooth:			always;
+				font-weight:			300;
+				height:					100vh;
+				letter-spacing:			0.5px;
+				text-rendering:			optimizeLegibility;
+				-webkit-font-rendering:	subpixel-antialiased;
+				-webkit-font-smoothing: antialiased;
 			}
 
 			body {
-				padding:		2em;
+				margin:					0;
+				padding:				0;
 			}
-			
+
 			body:before,
 			body:after {
-				content:		" ";
-				display:		table;
+				content:				" ";
+				display:				table;
 			}
-			
+
 			body:after {
-				clear: 			both;
+				clear:					both;
+			}
+
+			.language-selection-block {
+				/*height:					10vh;
+				line-height:			10vh;
+				min-height: 			60px;*/
+				/*padding:				0 1em;*/
+			}
+
+			.language-selection-block-input {
+				background:				#ffffff;
+				border:					none;
+				color:					#999999;
+				display:				inline-block;
+				font-size:				1.5em;
+				margin: 				0.5em 0.6667em;
+				padding:				0.3em 0.5em;	
+				vertical-align:			middle;
+				width:					calc(100% - 1.3334em);
+				-webkit-appearance:		none;
 			}
 			
 			textarea {
-				background: 	#fff;
-				border:			1px solid #bdc3c7;
-				box-shadow:		none;
-				resize:			none;
+				background:				#fff;
+				border:					none;
+				box-shadow:				none;
+				overflow:				auto;
+				resize:					none;
 			}
 
 			textarea,
 			.output {
-				color:			#7f8c8d;
-				display:		block;
-				float:			left;
-				font-size:		2em;
-				height:			300px;
-				overflow:		hidden;
-				padding:		1em;
-			}
-			
-			h2 {
-				clear:			both;
-				float:			left;
-				margin:			0.5em 0;
-				width:			100%;
+				color:					#7f8c8d;
+				display:				block;
+				float:					left;
+				font-size:				1.25em;
+				height:					calc(100% - 3.3em);
+				min-height:				300px;
+				overflow:				hidden;
+				padding:				1em;
+				width:					50%;
 			}
 
-			.input {
-				margin-right:	2%;
-				width:			49%;
+			textarea {
+				overflow-y:				scroll;
 			}
-			
-			.output {
-				font-family:	"PingHei","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
-				width:			49%;
+
+			textarea:focus,
+			.output:focus {
+				outline:				none;
+			}
+
+			.output.zhcn {
+				font-family:			"PingHei","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+			}
+
+			.output.zhhk,
+			.output.zhtw {
+				font-family:			"MHei","Lucida Grande", "Lucida Sans Unicode", "STHeitiTC-Light", "Helvetica","Arial","Verdana","sans-serif";
 			}
 			
 			.output:focus {
-				outline:		none;
-			}
-			
-			.warning {
-				color:			#bdc3c7;
-				display:		block;
-				font-size:		0.75em;
-				font-style:		italic;
-				left:			3.5em;
-				position:		absolute;
-				top:			1em;
-/*				transform:		translateX(-50%);*/
-			}
-			
-			.test-widths {
-				padding: 		1em 0;
-				width:			100%;
-			}
-			
-			.test-widths-copy {
-				padding: 		1em 0;
-			}
-			
-			.test-widths-section {
-				font-family:	"PingHei","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
-				float:			left;
-				height:			100px;
-				line-height:	1.125;
-				margin-bottom:	32px;
-				margin-right:	32px;
-				outline:		1px solid #bdc3c7;
-				overflow:		hidden;
-				padding:		16px;
-				position:		relative;
-			}
-			
-			.test-widths-section:after {
-				background: 	-moz-linear-gradient(top,  rgba(236,240,241,0) 0%, rgba(236,240,241,1) 96%, rgba(236,240,241,1) 100%); /* FF3.6+ */
-				background: 	-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(236,240,241,0)), color-stop(96%,rgba(236,240,241,1)), color-stop(100%,rgba(236,240,241,1))); /* Chrome,Safari4+ */
-				background: 	-webkit-linear-gradient(top,  rgba(236,240,241,0) 0%,rgba(236,240,241,1) 96%,rgba(236,240,241,1) 100%); /* Chrome10+,Safari5.1+ */
-				background: 	-o-linear-gradient(top,  rgba(236,240,241,0) 0%,rgba(236,240,241,1) 96%,rgba(236,240,241,1) 100%); /* Opera 11.10+ */
-				background: 	-ms-linear-gradient(top,  rgba(236,240,241,0) 0%,rgba(236,240,241,1) 96%,rgba(236,240,241,1) 100%); /* IE10+ */
-				background: 	linear-gradient(to bottom,  rgba(236,240,241,0) 0%,rgba(236,240,241,1) 96%,rgba(236,240,241,1) 100%); /* W3C */
-				bottom:			0;
-				content:		"";
-				display:		block;
-				height:			20px;
-				left:			0;
-				position:		absolute;
-				width:			100%;
-			}
-			
-			.test-widths-section--large {
-				font-size:		2em;
-				width: 			697px;
+				outline:				none;
 			}
 
-			.test-widths-copy .test-widths-section--large {
-				font-size:		1em;
-			}
-			
-			.test-widths-section--medium {
-				font-size:		1.75em;
-				width:			483px;
-			}
-			
-			.test-widths-copy .test-widths-section--medium {
-				font-size:		1em;
+			.notification {
+				background:				#2c3e50;
+				bottom:					-100vh;
+				border-top:				1px solid rgba(255,255,255,0.5);
+				/*box-shadow:				0 -1px 20px rgba(0,0,0,0.5);*/
+				color:					#ffffff;
+				height:					50vh;
+				left:					0;
+				overflow:				auto;
+				padding:				1em;
+				position:				fixed;
+				transition:				0.2s all ease-out;
+				width:					100%;
+				z-index:				2;
 			}
 
-			.test-widths-section--small {
-				font-size:		1.375em;
-				margin-right:	0;
-				width:			359px;
+			.notification.open {
+				bottom:					0;
+				transition:				0.2s all ease-out;
 			}
-			
-			.test-widths-copy .test-widths-section--small {
-				font-size:		1em;
+
+			.notification-close-button {
+				background:				none;
+				border:					none;
+				box-shadow:				none;
+				color:					#ffffff;
+				cursor:					pointer;
+				font-size:				1.5em;
+				opacity:				0.5;
+				padding:				0.25em 0.5em 2em 2em;
+				position:				absolute;
+				right:					0;
+				top:					0;
+				-webkit-transition:		0.3s all ease-in-out;
+				transition:				0.3s all ease-in-out;
+				z-index:				3;
+			}
+
+			.notification-close-button:focus {
+				outline:				none;
+			}
+
+			.notification-close-button:hover {
+				opacity:				1;
+			}
+
+			.notification-negative,
+			.notification-positive {
+				display:				none;
+				font-family:			"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+				font-size:				1.25em;
+				font-weight:			200;
+			}
+
+			.icon {
+				display:				inline-block;
+				margin-right:			0.5em;
+				vertical-align:			middle;
+			}
+
+			.notification-negative .icon {
+				color:					#e74c3c;
+			}
+
+			.notification-positive .icon {
+				color:					#2ecc71;
+			}
+
+			.notification-character-list {
+				display:				none;
+				font-size:				1.5em;
+				list-style-type:		square;
+			}
+
+			.notification.positive .notification-positive {
+				display:				block;
+			}
+
+			.notification.negative .notification-negative,
+			.notification.negative .notification-character-list {
+				display:				block;
 			}
 
 		</style>
 	</head>
 	<body>
-		<span class="warning">only paste chinese characters - delete numbers, spaces, and roman letters - to test for unsupported characters</span>
-		<textarea class="input" placeholder="paste Chinese here"></textarea>
-		<div class="output">output</div>
-		<div class="test-widths">
-			<h2>Headlines</h2>
-			<div class="test-widths-section test-widths-section--large"></div>
-			<div class="test-widths-section test-widths-section--medium"></div>
-			<div class="test-widths-section test-widths-section--small"></div>
+
+		<div class="language-selection-block">
+			<select class="language-selection-block-input">
+				<option value="zhcn">中国大陆 － 简体中文 - PingHei</option>
+				<option value="zhhk">香港 － 繁體中文 － MHei</option>
+				<option value="zhtw">台湾 － 繁體中文 － MHei</option>
+			</select>
 		</div>
-		<div class="test-widths test-widths-copy">
-			<h2>Copy</h2>
-			<div class="test-widths-section test-widths-section--large"></div>
-			<div class="test-widths-section test-widths-section--medium"></div>
-			<div class="test-widths-section test-widths-section--small"></div>
+
+		<textarea class="input" placeholder="paste Chinese here (e.g. 一缕阳光)"></textarea>
+
+		<div class="output">unsupported characters will be in red</div>
+
+		<div class="notification">
+			<button class="notification-close-button" type="button">&times;</button>
+			<h2 class="notification-negative">
+				<i class="icon">&cross;</i>
+				Sorry, you can't use these characters:
+			</h2>
+			<h2 class="notification-positive">
+				<i class="icon">&check;</i>
+				All characters are OK!
+			</h2>
+			<ul class="notification-character-list"></ul>
 		</div>
 		
 		<script>
 			(function () {
-				
-				var QueryString = function () {
-				  // This function is anonymous, is executed immediately and 
-				  // the return value is assigned to QueryString!
-				  var query_string = {};
-				  var query = window.location.search.substring(1);
-				  var vars = query.split("&");
-				  for (var i=0;i<vars.length;i++) {
-				    var pair = vars[i].split("=");
-				        // If first entry with this name
-				    if (typeof query_string[pair[0]] === "undefined") {
-				      query_string[pair[0]] = pair[1];
-				        // If second entry with this name
-				    } else if (typeof query_string[pair[0]] === "string") {
-				      var arr = [ query_string[pair[0]], pair[1] ];
-				      query_string[pair[0]] = arr;
-				        // If third or later entry with this name
-				    } else {
-				      query_string[pair[0]].push(pair[1]);
-				    }
-				  } 
-				    return query_string;
-				} ();
-				
+
 				// Using PingHei, characters are quite narrow. This test works by
 				// looking for characters that are wider than average and therefore
 				// likely to be reverting to the system font
-				
-				// Tested on entire C2 copydeck - caught all problem characters
-				
+
+				var QueryString = function () {
+					// This function is anonymous, is executed immediately and 
+					// the return value is assigned to QueryString!
+					var query_string = {};
+					var query = window.location.search.substring(1);
+					var vars = query.split("&");
+					for (var i=0;i<vars.length;i++) {
+						var pair = vars[i].split("=");
+							// If first entry with this name
+						if (typeof query_string[pair[0]] === "undefined") {
+							query_string[pair[0]] = pair[1];
+							// If second entry with this name
+						} else if (typeof query_string[pair[0]] === "string") {
+							var arr = [ query_string[pair[0]], pair[1] ];
+							query_string[pair[0]] = arr;
+							// If third or later entry with this name
+						} else {
+							query_string[pair[0]].push(pair[1]);
+						}
+					} 
+						return query_string;
+				} ();
+
+				// Get language select
+				var languageSelect = document.getElementsByClassName("language-selection-block-input")[0];
+
 				// Get input and output areas
 				var input = document.getElementsByClassName("input")[0];
 				var output = document.getElementsByClassName("output")[0];
-				var testSections = document.getElementsByClassName("test-widths-section");
+
+				// Get notification block, close button, and character list
+				var notification = document.getElementsByClassName("notification")[0];
+				var closeButton = document.getElementsByClassName("notification-close-button")[0];
+				var characterList = document.getElementsByClassName("notification-character-list")[0];
+
+				// Save array of problem characters
+				var problemCharacters = [];
 
 				// check for text as a URL parameter for automated testing
 				if(QueryString.length != 0 && QueryString.text){
@@ -225,47 +284,77 @@
 				 	updateOutput();
 					input.focus();
 				}
-				
+
+				// check for language as a URL parameter for automated testing
+				if(QueryString.length != 0 && QueryString.lang){
+					languageSelect.value = QueryString.lang.trim();
+					changeLanguage();
+				}
+
+				// Event listeners
+
+				// Listen for language selection
+				languageSelect.addEventListener("change", changeLanguage)
+				changeLanguage();
+
 				// Listen for input
 				input.addEventListener("keyup", updateOutput);
-				
+
+				// Listen for notification button press
+				closeButton.addEventListener("click", hideNotification);
+
+				function changeLanguage() {
+
+					output.classList.remove("zhcn");
+					output.classList.remove("zhhk");
+					output.classList.remove("zhtw");
+
+					switch(languageSelect.value) {
+						case "zhcn":
+							output.classList.add("zhcn");
+							break;
+						case "zhhk":
+							output.classList.add("zhhk");
+							break;
+						case "zhtw":
+							output.classList.add("zhtw");
+							break;
+					}
+
+				}
+
 				// Update the output
 				function updateOutput(e) {
 					// clear previous/existing output
 					output.innerHTML = "";
-	
-					var text = input.value.trim();
-					
-					// create a new span for each character in the input
-					for(var i = 0; i < text.length; i++) {
-						var newSpan = document.createElement("span");
-						newSpan.textContent = text.charAt(i);
-						output.appendChild(newSpan);
+					problemCharacters = [];
+
+					var text = input.value.replace(/[a-zA-Z0-9\s\.,-\/#!<>\"\'。、，\+|\?$%\^&\*;:{}=\-_`~()]+/g, "").trim();
+
+					if(text.length != 0) {
+
+						// create a new span for each character in the input
+						for(var i = 0; i < text.length; i++) {
+							var newSpan = document.createElement("span");
+							newSpan.textContent = text.charAt(i);
+							output.appendChild(newSpan);
+						}
+
+						// check the spans (needs time to render them all first, hence the timeout)
+						setTimeout(function() {
+							checkSpans();
+							showNotification();
+						}, 100);
+
+						input.style.height = output.clientHeight + "px";
+
+					} else {
+						hideNotification();
+						output.innerHTML = "unsupported characters will be in red";
 					}
-					
-					// check the spans (needs time to render them all first, hence the timeout)
-					setTimeout(function() {
-						checkSpans();
-					}, 100);
-					
-					// reset the output if input is empty
-					if(text.length === 0) {
-						output.innerHTML = "output";
-					}
-					
-					// test the content under specific widths
-					updateTestWidthSections(text);
-					
+
 				}
-				
-				function updateTestWidthSections(text) {
-					
-					for(var i = 0; i < testSections.length; i++) {
-						testSections[i].innerHTML = text;
-					}
-					
-				}
-				
+
 				// compare all the spans to find potentially problem characters
 				function checkSpans() {
 					var spans = document.querySelectorAll(".output span");
@@ -277,20 +366,76 @@
 						sum += spanWidth;
 					}
 					var avg = sum / spans.length;
-					
+
 					// now highlight any that are around 1px or more wider than average
 					for(var j = 0; j < spans.length; j++) {
 						var spanWidth = spans[j].offsetWidth;
 						if(spanWidth > Math.ceil(avg)) {
 							spans[j].style.color = "red";
+							gatherProblemCharacters(spans[j].innerHTML);
 						}
 					}
 				}
-				
+
+				// maintain an array of all problem characters
+				function gatherProblemCharacters(character) {
+
+					// check if the character is already in the array
+					if (problemCharacters.indexOf(character) == -1) {
+						// if not, add it
+						problemCharacters.push(character);
+					}
+
+				}
+
+				function showNotification() {
+
+					notification.classList.remove("positive");
+					notification.classList.remove("negative");
+
+					if(problemCharacters.length == 0) {
+						notification.classList.add("positive");
+					} else {
+						notification.classList.add("negative");
+						populateList();
+					}
+
+					notification.classList.add("open");
+				}
+
+				function populateList() {
+
+					characterList.innerHTML = "";
+
+					listItems = "";
+
+					for(var i = 0; i < problemCharacters.length; i++) {
+
+						listItems += "<li>" + problemCharacters[i] +"</li>";
+
+					}
+
+					characterList.innerHTML = listItems;
+
+				}
+
+				function hideNotification() {
+					notification.classList.remove("open");
+				}
+
+				window.addEventListener("resize", resizeStuff);
+
+				function resizeStuff() {
+
+					height = window.innerHeight - (4.125 * 16);
+					console.log(height);
+
+					input.style.height = height + "px";
+					output.style.height = height + "px";
+				}
+
 			})();
 
-			// example problem character phrase:
-			// 一缕阳光
 		</script>
 	</body>
 </html>
