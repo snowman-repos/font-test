@@ -132,9 +132,17 @@
 				z-index:				2;
 			}
 
+			.notification-content {
+				opacity:				0;
+				transition:				0.2s 0.4s all ease-out;
+			}
+
 			.notification.open {
 				bottom:					0;
-				transition:				0.2s all ease-out;
+			}
+
+			.notification.open .notification-content {
+				opacity:				1;
 			}
 
 			.notification-close-button {
@@ -217,15 +225,17 @@
 
 		<div class="notification">
 			<button class="notification-close-button" type="button">&times;</button>
-			<h2 class="notification-negative">
-				<i class="icon">&cross;</i>
-				Sorry, you can't use these characters:
-			</h2>
-			<h2 class="notification-positive">
-				<i class="icon">&check;</i>
-				All characters are OK!
-			</h2>
-			<ul class="notification-character-list"></ul>
+			<div class="notification-content">
+				<h2 class="notification-negative">
+					<i class="icon">&cross;</i>
+					Sorry, you can't use these characters:
+				</h2>
+				<h2 class="notification-positive">
+					<i class="icon">&check;</i>
+					All characters are OK!
+				</h2>
+				<ul class="notification-character-list"></ul>
+			</div>
 		</div>
 		
 		<script>
